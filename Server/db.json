@@ -1,1 +1,1 @@
-{"users": {"1": {"username": "CovER", "password": "12345", "user_id": 1}, "2": {"username": "HAH", "password": "12345", "user_id": 2}}}
+{"users": {"1": {"username": "HAH", "password": "12345", "user_id": 1}, "2": {"username": "HAHA", "password": "12345", "user_id": 2}}, "chats": {"1": {"first": 1, "second": 2, "messages": {"1": {"from": 1, "message": {"text": "12345"}, "message_id": 1}}}}}

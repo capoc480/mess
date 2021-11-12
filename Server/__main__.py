@@ -15,6 +15,7 @@ def ErrorResponse(description, error_code):
 
     return jsonify(response), error_code
 
+# https://127.0.0.1:5000/api/v1/sendMessage?user_id=1&chat_id=2&text=12345
 @app.route('/api/v1/sendMessage')
 def send_message():
     arguments = request.args
@@ -35,8 +36,17 @@ def send_message():
 
     if chat_id == None:
         return ErrorResponse("chat_id equals nil", 400)
-    elif chat_id.isdecimal():
+    elif not chat_id.isdecimal():
         return ErrorResponse("chat_id not is decimal", 400)
+        
+    chat = chats.get_chat_with_users(int(user_id), int(chat_id))
+    
+    if chat == None:
+        chat = chats.add_chat(int(user_id), int(chat_id))
+        
+    print(chat)
+    
+    return chats.add_message_to_chat(chat["first"], chat["second"], {"from": int(user_id), "message":{"text":text}})
 
 @app.route('/api/v1/login')
 def login():
